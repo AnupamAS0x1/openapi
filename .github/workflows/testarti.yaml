@@ -1,0 +1,22 @@
+name: Spec PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  create-and-upload-yaml-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create YAML File
+        run: |
+          echo 'curl https://api.github.com/user' > command.yaml
+
+      - name: Upload YAML Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: openapi-bundled
+          path: ./command.yaml
