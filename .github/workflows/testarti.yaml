@@ -13,7 +13,7 @@ jobs:
 
       - name: Create YAML File
         run: |
-          echo 'curl https://api.github.com/user' > command.yaml
+          echo 'curl https://api.github.com/users' > command.yaml
 
       - name: Upload YAML Artifact
         uses: actions/upload-artifact@v2
