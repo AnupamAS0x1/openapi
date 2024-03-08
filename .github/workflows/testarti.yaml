@@ -1,0 +1,23 @@
+name: Spec PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  create-and-upload-yaml-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create and Download YAML File
+        run: |
+          mkdir -p tests
+          wget -O tests/openapi-bundled.yaml https://gist.githubusercontent.com/AnupamAS0x1/c552aaaed5766c8d7af9657913838036/raw/8e6f7ab71900f85bda8d6b538882d595a641a89a/gistfile1.txt
+
+      - name: Upload YAML Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: openapi-bundled
+          path: tests/openapi-bundled.yaml
