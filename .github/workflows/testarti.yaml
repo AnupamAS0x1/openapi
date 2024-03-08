@@ -13,10 +13,10 @@ jobs:
 
       - name: Create YAML File
         run: |
-          echo 'curl https://api.github.com/users' > command.yaml
+          echo 'wget https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml' > tests/openapi-bundled.yaml
 
       - name: Upload YAML Artifact
         uses: actions/upload-artifact@v2
         with:
           name: openapi-bundled
-          path: ./command.yaml
+          path: tests/openapi-bundled.yaml
