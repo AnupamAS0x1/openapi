@@ -11,9 +11,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create YAML File
+      - name: Create and Download YAML File
         run: |
-          echo 'wget https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml' > tests/openapi-bundled.yaml
+          mkdir -p tests
+          wget -O tests/openapi-bundled.yaml https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml
 
       - name: Upload YAML Artifact
         uses: actions/upload-artifact@v2
